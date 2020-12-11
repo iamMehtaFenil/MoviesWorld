@@ -2,6 +2,7 @@ import requests
 import json
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Movie_Data
 
 def index(request):
    
