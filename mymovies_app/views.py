@@ -6,7 +6,7 @@ from .models import Movie_Data
 
 def index(request):
    
-    response = requests.get('https://api.themoviedb.org/3/movie/top_rated?api_key=<<PUT your API key>>&language=en-US&page=1')
+    response = requests.get('https://api.themoviedb.org/3/movie/top_rated?api_key=4d8f107a19366ff018ab05901d44eb84&language=en-US&page=1')
    
     json_str= json.dumps(response.json(),indent=2)
     data=json.loads(json_str)
@@ -39,6 +39,5 @@ def index(request):
     context={
        'movie_data':movie_data,
     }
-
     # return HttpResponse("Hello")
     return render(request, 'mymovies_app/index.html',context)
