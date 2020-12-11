@@ -6,7 +6,7 @@ from .models import Movie_Data
 
 def index(request):
    
-    response = requests.get('https://api.themoviedb.org/3/movie/top_rated?api_key=52364270e03d88b2f26ad29cff466e81&language=en-US&page=1')
+    response = requests.get('https://api.themoviedb.org/3/movie/top_rated?api_key=<<PUT your API key>>&language=en-US&page=1')
    
     json_str= json.dumps(response.json(),indent=2)
     data=json.loads(json_str)
