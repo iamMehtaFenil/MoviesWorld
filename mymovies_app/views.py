@@ -10,7 +10,20 @@ def index(request):
     json_str= json.dumps(response.json(),indent=2)
     data=json.loads(json_str)
 
-    
+    if request.method == 'GET':
+        for i in range(len(data['results'])):
+            movie_id = data['results'][i]['id']
+            title = data['results'][i]['title']
+            overview = data['results'][i]['overview']
+            popularity = data['results'][i]['popularity']
+            poster_path = data['results'][i]['poster_path']
+
+            if not Movie_Data.objects.filter(movie_id= movie_id,title=title).exists():
+                Movie_Data.objects.create(movie_id =movie_id,title=title,poster_path =poster_path ,overview =overview ,popularity=popularity)
+                print("Data Created")
+            
+            # else:
+            #     print("Data Exists...")
     
     
     # movie_data={}
@@ -20,9 +33,11 @@ def index(request):
     #                                         "overview":data['results'][i]['overview'],
     #                                         "popularity":data['results'][i]['popularity'],
     #                                         }
-    # context={
-    #    'movie_data':movie_data,
-    # }
+    
+    movie_data = Movie_Data.objects.all()
+    context={
+       'movie_data':movie_data,
+    }
 
-    return HttpResponse("Hello")
-    # return render(request, 'movies/index.html',context)
+    # return HttpResponse("Hello")
+    return render(request, 'movies/index.html',context)
