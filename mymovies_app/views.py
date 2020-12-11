@@ -41,4 +41,4 @@ def index(request):
     }
 
     # return HttpResponse("Hello")
-    return render(request, 'movies/index.html',context)
+    return render(request, 'mymovies_app/index.html',context)
